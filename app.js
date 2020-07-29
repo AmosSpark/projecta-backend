@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 require('dotenv/config');
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 // ROUTES
 const projectsRoute = require('./routes/projects');

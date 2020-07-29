@@ -1,5 +1,5 @@
 const express = require('express');
-const projects = require('../models/projects');
+const Project = require('../models/projects');
 const router = express.Router();
 
 
@@ -8,12 +8,12 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    const post = new post({
+    const project = new Project({
         title: req.body.title,
         description: req.body.description
     });
 
-  projects.save()
+  project.save()
     .then(data => {
       res.json(data);
     }) 
