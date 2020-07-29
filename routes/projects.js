@@ -6,7 +6,6 @@ router.get('/', (req, res) => {
     res.send('this is the list of the projects');
 });
 
-
 router.post('/', (req, res) => {
     console.log(req.body);
 });
