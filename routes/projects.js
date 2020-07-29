@@ -12,13 +12,16 @@ router.post('/', (req, res) => {
         description: req.body.description
     });
 
-    post.save()
-        .then(data => {
-            res.json(data);
+      console.log(post);
+      new Post(post)
+        .save()
+        .then((data) => {
+          res.json(data);
+          console.log(data);
         })
-        .catch(err => {
-        res.json({ message: err})
-    })
+        .catch((err) => {
+          res.json({ message: err });
+        });
 });
 
 
