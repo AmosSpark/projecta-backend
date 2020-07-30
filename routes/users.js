@@ -1,14 +1,27 @@
-import express from "express";
-import userController from "./user.controller";
+const express = require("express");
+const User = require("../models/Users");
+const router = express.Router();
 
-export const userRouter = express.Router();
+router.get("/", (req, res) => {
+  res.send("this is the list of users");
+});
 
-userRouter.param("id", userController.findByParam);
+router.post("/", (req, res) => {
+  const user = new User({
+    fullname: req.body.fullname,
+    username: req.body.username,
+    phonenumber: req.body.phonenumber,
+    password: req.body.password,
+  });
 
-userRouter.route("/").get(userController.getAll).post(userController.createOne);
+  user
+    .save()
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      res.json({ message: err });
+    });
+});
 
-userRouter
-  .route("/:id")
-  .get(userController.getOne)
-  .put(userController.updateOne)
-  .delete(userController.createOne);
+module.exports = router;

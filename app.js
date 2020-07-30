@@ -7,6 +7,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 // ROUTES
 const projectsRoute = require('./routes/projects');
+const userRoute = require('./routes/users');
+
+app.use('/users', userRoute);
 app.use('/projects', projectsRoute);
 app.get('/', (req, res) => {
 	res.send('we are on the home route');
