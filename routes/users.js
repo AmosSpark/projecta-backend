@@ -8,10 +8,7 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
   const user = new User({
-    fullname: req.body.fullname,
-    username: req.body.username,
-    phonenumber: req.body.phonenumber,
-    password: req.body.password,
+    fullname: console.log(req.body),
   });
 
   user
