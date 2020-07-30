@@ -3,10 +3,17 @@ const Project = require('../models/projects');
 const router = express.Router();
 
 
-router.get('/', (req, res) => {
-    res.send('this is the list of the projects');
+router.get('/', async (req, res) => {
+    try {
+      const projects = await Project.find();
+      res.json(projects);
+    } catch (error) {
+      res.json({ message: error });
+    }
 });
 
+
+// Submit a project
 router.post('/', (req, res) => {
     const project = new Project({
         title: req.body.title,
@@ -21,6 +28,16 @@ router.post('/', (req, res) => {
       res.json({ message: err });
     });
 
+});
+
+// Specific project
+router.get('/:projectId', async (req, res) => {
+  try {
+    const project = await Project.findById(req.params.projectId);
+    res.json(project)
+  } catch(err) {
+    res.json({ message: err });
+  }
 });
 
 
