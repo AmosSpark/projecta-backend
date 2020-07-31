@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const projectsSchema = mongoose.Schema({
+// added new before mongoose.Schema - dunno if it's important tho
+const projectsSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -11,12 +12,12 @@ const projectsSchema = mongoose.Schema({
   },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'users'
+    ref: "User", // refrence the model and not "users"
   },
   date: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
-module.exports = mongoose.model('Project', projectsSchema);
+module.exports = mongoose.model("Project", projectsSchema);

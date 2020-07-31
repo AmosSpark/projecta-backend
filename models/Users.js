@@ -1,16 +1,15 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const userSchema = mongoose.Schema({
-
+// added new before mongoose.Schema - dunno if it's important tho
+const userSchema = new mongoose.Schema({
   fullname: {
     type: String,
     unique: true,
-    
   },
 
   username: {
     type: String,
-    unique: true,  
+    unique: true,
   },
 
   phonenumber: {
@@ -19,10 +18,10 @@ const userSchema = mongoose.Schema({
   },
 
   password: {
-    required: true,
     type: String,
+    required: true,
+    select: false, // hide password on GET request
   },
-
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model("User", userSchema);
